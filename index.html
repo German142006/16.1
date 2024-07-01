@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo-container">
+        <h1>TODO List</h1>
+        <form id="todo-form">
+            <input type="text" id="todo-input" placeholder="Enter new task">
+            <button type="submit">Add Task</button>
+        </form>
+        <ul id="todo-list"></ul>
+    </div>
+</body>
+</html>
+    <script src="script.js">
+    class Student {
+        constructor(firstName, lastName, birthYear) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.birthYear = birthYear;
+            this.grades = [];
+            this.attendance = new Array(25).fill(null);
+        }
+    
+        getAge() {
+            const currentYear = new Date().getFullYear();
+            return currentYear - this.birthYear;
+        }
+    
+        getAverageGrade() {
+            if (this.grades.length === 0) return 0;
+            const sum = this.grades.reduce((a, b) => a + b, 0);
+            return sum / this.grades.length;
+        }
+    
+        present() {
+            const index = this.attendance.indexOf(null);
+            if (index !== -1) {
+                this.attendance[index] = true;
+            } else {
+                console.log("Attendance record is full");
+            }
+        }
+    
+        absent() {
+            const index = this.attendance.indexOf(null);
+            if (index !== -1) {
+                this.attendance[index] = false;
+            } else {
+                console.log("Attendance record is full");
+            }
+        }
+    
+        getAverageAttendance() {
+            const attendedClasses = this.attendance.filter(day => day === true).length;
+            const totalClasses = this.attendance.filter(day => day !== null).length;
+            return totalClasses === 0 ? 0 : attendedClasses / totalClasses;
+        }
+    
+        summary() {
+            const averageGrade = this.getAverageGrade();
+            const averageAttendance = this.getAverageAttendance();
+            if (averageGrade > 90 && averageAttendance > 0.9) {
+                return "Молодець!";
+            } else if (averageGrade > 90 || averageAttendance > 0.9) {
+                return "Добре, але можна краще";
+            } else {
+                return "Редиска!";
+            }
+        }
+    }
+    
+    // Создание экземпляров студентов
+    const student1 = new Student("Іван", "Петров", 2000);
+    const student2 = new Student("Марія", "Іванова", 1999);
+    const student3 = new Student("Андрій", "Сидоров", 2001);
+    
+    // Добавление оценок
+    student1.grades.push(95, 92, 88);
+    student2.grades.push(85, 87, 90);
+    student3.grades.push(70, 75, 80);
+    
+    // Отметка посещаемости
+    student1.present();
+    student1.present();
+    student1.absent();
+    
+    student2.present();
+    student2.absent();
+    student2.present();
+    
+    student3.absent();
+    student3.absent();
+    student3.present();
+    
+    // Проверка методов
+    console.log(`Вік студент1: ${student1.getAge()}`);
+    console.log(`Середній бал студент1: ${student1.getAverageGrade()}`);
+    console.log(`Середнє відвідування студент1: ${student1.getAverageAttendance()}`);
+    console.log(`Резюме студент1: ${student1.summary()}`);
+    
+    console.log(`Вік студент2: ${student2.getAge()}`);
+    console.log(`Середній бал студент2: ${student2.getAverageGrade()}`);
+    console.log(`Середнє відвідування студент2: ${student2.getAverageAttendance()}`);
+    console.log(`Резюме студент2: ${student2.summary()}`);
+    
+    console.log(`Вік студент3: ${student3.getAge()}`);
+    console.log(`Середній бал студент3: ${student3.getAverageGrade()}`);
+    console.log(`Середнє відвідування студент3: ${student3.getAverageAttendance()}`);
+    console.log(`Резюме студент3: ${student3.summary()}`);
+    
+
